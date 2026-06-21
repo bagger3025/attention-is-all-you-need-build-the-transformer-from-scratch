@@ -295,8 +295,13 @@ def merge_heads_and_project_output(context, w_o, b_o):
     context = merge_heads_back_to_model_dim(context)
     return apply_linear_projection(context, w_o, b_o)
 
-# Step 31 - assemble_multi_head_attention_forward (not yet solved)
-# TODO: implement
+# Step 31 - assemble_multi_head_attention_forward
+def assemble_multi_head_attention_forward(query, key, value, w_q, w_k, w_v, w_o, num_heads, mask=None):
+    q, k, v = apply_linear_projection(query, w_q, None), apply_linear_projection(key, w_k, None), apply_linear_projection(value, w_v, None)
+    q, k, v = split_qkv_into_heads(q, k, v, num_heads)
+    ctx, _ = multi_head_scaled_dot_product_attention(q, k, v, mask)
+    o = merge_heads_and_project_output(ctx, w_o, None)
+    return o
 
 # Step 32 - apply_ffn_first_linear_and_relu (not yet solved)
 # TODO: implement

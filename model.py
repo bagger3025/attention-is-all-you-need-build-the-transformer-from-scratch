@@ -237,8 +237,12 @@ def split_last_dim_into_heads(tensor, num_heads):
 
     return tensor.reshape(B, L, num_heads, d_model // num_heads)
 
-# Step 24 - transpose_heads_before_sequence (not yet solved)
-# TODO: implement
+# Step 24 - transpose_heads_before_sequence
+import torch
+
+def transpose_heads_before_sequence(split_tensor):
+    # TODO: rearrange (B, L, num_heads, d_k) into (B, num_heads, L, d_k).
+    return torch.transpose(split_tensor, 1, 2)
 
 # Step 25 - merge_heads_back_to_model_dim (not yet solved)
 # TODO: implement

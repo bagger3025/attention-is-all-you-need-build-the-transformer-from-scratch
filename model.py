@@ -161,8 +161,12 @@ def build_causal_mask(seq_len):
     
     return ret.reshape(1, 1, seq_len, seq_len)
 
-# Step 16 - combine_padding_and_causal_masks (not yet solved)
-# TODO: implement
+# Step 16 - combine_padding_and_causal_masks
+import torch
+
+def combine_padding_and_causal_masks(padding_mask, causal_mask):
+    # TODO: combine a (B,1,1,L) padding mask with a (1,1,L,L) causal mask into (B,1,L,L).
+    return padding_mask & causal_mask
 
 # Step 17 - compute_raw_attention_scores (not yet solved)
 # TODO: implement

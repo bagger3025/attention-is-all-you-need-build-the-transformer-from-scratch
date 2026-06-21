@@ -303,8 +303,11 @@ def assemble_multi_head_attention_forward(query, key, value, w_q, w_k, w_v, w_o,
     o = merge_heads_and_project_output(ctx, w_o, None)
     return o
 
-# Step 32 - apply_ffn_first_linear_and_relu (not yet solved)
-# TODO: implement
+# Step 32 - apply_ffn_first_linear_and_relu
+def apply_ffn_first_linear_and_relu(x, w1, b1):
+    out = x @ w1 + b1
+    out[out < 0] = 0
+    return out
 
 # Step 33 - apply_ffn_second_linear (not yet solved)
 # TODO: implement
